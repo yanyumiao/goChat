@@ -25,6 +25,7 @@ func say(tcpConn *net.TCPConn) {
 		total, err := tcpConn.Read(data)
 		if err != nil {
 			fmt.Println(string(data[:total]), err)
+			// TODO err in for
 		} else {
 			fmt.Println(string(data[:total]))
 		}
