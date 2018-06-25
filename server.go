@@ -46,7 +46,7 @@ func main() {
 	//localAddr :=conn.LocalAddr().String()
 	//fmt.Println(localAddr)
 	//tcpAddr, _ := net.ResolveTCPAddr("tcp",localAddr)
-	tcpAddr, _ := net.ResolveTCPAddr("tcp", "127.0.0.1:8080") // 
+	tcpAddr, _ := net.ResolveTCPAddr("tcp", "127.0.0.1:9000") // 
 	tcpListen, _ := net.ListenTCP("tcp", tcpAddr)
 	ConnMap = make(map[string]*net.TCPConn)
 	for {

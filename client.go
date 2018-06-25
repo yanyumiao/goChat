@@ -28,7 +28,7 @@ func main() {
 	}
 	service := os.Args[1]
 	TcpAdd, _ := net.ResolveTCPAddr("tcp", service)
-	//TcpAdd, _ := net.ResolveTCPAddr("tcp", "localhost:8080")
+	//TcpAdd, _ := net.ResolveTCPAddr("tcp", "localhost:9000")
 	conn, err := net.DialTCP("tcp", nil, TcpAdd)
 	if err != nil {
 		fmt.Println("服务没打开")
