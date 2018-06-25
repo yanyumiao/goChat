@@ -7,14 +7,14 @@ import (
 	"os"
 )
 
-var ch chan int = make(chan int)
+var ch chan int = make(chan int) // 全局通道
 var nickname string
 
 func reader(conn *net.TCPConn) {
 	buff := make([]byte, 256)
 	for {
 		j, err := conn.Read(buff)
-		if err != nil {
+		if err != nil { // 发生错误
 			ch <- 1
 			break
 		}
@@ -22,6 +22,7 @@ func reader(conn *net.TCPConn) {
 	}
 }
 func main() {
+    // 命令行参数检查
 	if len(os.Args) != 2 {
 		fmt.Fprintf(os.Stderr, "Usage:%s host:port", os.Args[0])
 		os.Exit(1)
@@ -35,7 +36,7 @@ func main() {
 		os.Exit(1)
 	}
 	defer conn.Close()
-	go reader(conn)
+	go reader(conn) // 异步 读
 	fmt.Println("请输入昵称")
 	fmt.Scanln(&nickname)
 	fmt.Println("你的昵称是：", nickname)
