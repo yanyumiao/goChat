@@ -1,4 +1,3 @@
-// client
 package main
 
 import (
@@ -22,14 +21,14 @@ func reader(conn *net.TCPConn) {
 	}
 }
 func main() {
-    // 命令行参数检查
+	// 命令行参数检查
 	if len(os.Args) != 2 {
 		fmt.Fprintf(os.Stderr, "Usage:%s host:port", os.Args[0])
 		os.Exit(1)
 	}
-	service := os.Args[1]
-	TcpAdd, _ := net.ResolveTCPAddr("tcp", service)
-	//TcpAdd, _ := net.ResolveTCPAddr("tcp", "localhost:9000")
+	server := os.Args[1]
+	TcpAdd, _ := net.ResolveTCPAddr("tcp", server)
+	//TcpAdd, _ := net.ResolveTCPAddr("tcp", "localhost:9999")
 	conn, err := net.DialTCP("tcp", nil, TcpAdd)
 	if err != nil {
 		fmt.Println("服务没打开")
