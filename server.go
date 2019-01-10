@@ -19,7 +19,7 @@ func checkErr(err error) int {
 func handleConn(conn net.Conn) {
 	defer conn.Close()
 	for {
-		data := make([]byte, 256)
+		data := make([]byte, 1024)
 		total, err := conn.Read(data)
 		if err != nil {
 			fmt.Println(string(data[:total]), err)
