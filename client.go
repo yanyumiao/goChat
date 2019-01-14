@@ -9,8 +9,8 @@ import (
 var ch chan int = make(chan int)
 var nickname string
 
-func read(conn *net.TCPConn) {
-	buff := make([]byte, 1024)
+func read(conn net.Conn) {
+	buff := make([]byte, 256)
 	for {
 		n, err := conn.Read(buff)
 		if err != nil {
@@ -21,16 +21,9 @@ func read(conn *net.TCPConn) {
 	}
 }
 func main() {
-	if len(os.Args) != 2 {
-		fmt.Fprintf(os.Stderr, "Usage:%s host:port", os.Args[0])
-		os.Exit(1)
-	}
-	server := os.Args[1]
-	TcpAdd, _ := net.ResolveTCPAddr("tcp", server)
-	//TcpAdd, _ := net.ResolveTCPAddr("tcp", "localhost:9999")
-	conn, err := net.DialTCP("tcp", nil, TcpAdd)
+	conn, err := net.Dial("tcp", "localhost:9999")
 	if err != nil {
-		fmt.Println("Server closed.")
+		fmt.Println(err.Error())
 		os.Exit(1)
 	}
 	defer conn.Close()
@@ -38,16 +31,13 @@ func main() {
 	fmt.Println("Input nickname:")
 	fmt.Scanln(&nickname)
 	fmt.Println("Your nickname:", nickname)
+	var msg string
 	for {
-		var msg string
 		fmt.Scan(&msg)
-		//fmt.Print("[" + nickname + "]" + ":")
-		//fmt.Println(msg)
-		b := []byte("[" + nickname + "]" + ":" + msg)
-		conn.Write(b)
+		conn.Write([]byte("[" + nickname + "]" + ":" + msg))
 		select {
 		case <-ch:
-			fmt.Println("Server error.")
+			fmt.Println("Server error")
 			os.Exit(2)
 		default:
 		}

@@ -5,7 +5,6 @@ import (
 	"net"
 )
 
-// global con pool
 var ConnMap map[string]net.Conn
 
 func checkErr(err error) int {
@@ -19,7 +18,7 @@ func checkErr(err error) int {
 func handleConn(conn net.Conn) {
 	defer conn.Close()
 	for {
-		data := make([]byte, 1024)
+		data := make([]byte, 256)
 		total, err := conn.Read(data)
 		if err != nil {
 			fmt.Println(string(data[:total]), err)
