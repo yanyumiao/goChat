@@ -1,10 +1,8 @@
 package main
 
-import (
-	"fmt"
-	"net"
-	"os"
-)
+import "fmt"
+import "net"
+import "os"
 
 var ch chan int = make(chan int)
 var nickname string

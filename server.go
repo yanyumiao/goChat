@@ -1,15 +1,12 @@
 package main
 
-import (
-	"fmt"
-	"net"
-)
+import "fmt"
+import "net"
 
 var ConnMap map[string]net.Conn
 
 func checkErr(err error) int {
 	if err != nil {
-		//fmt.Println("Err:" + err.Error())
 		return 1
 	}
 	return 0
