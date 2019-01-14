@@ -16,11 +16,11 @@ func handleConn(conn net.Conn) {
 	defer conn.Close()
 	for {
 		data := make([]byte, 256)
-		total, err := conn.Read(data)
+		n, err := conn.Read(data)
 		if err != nil {
-			fmt.Println(string(data[:total]), err)
+			fmt.Println(string(data[:n]), err)
 		} else {
-			fmt.Println(string(data[:total]))
+			fmt.Println(string(data[:n]))
 		}
 		// check
 		flag := checkErr(err)
@@ -33,7 +33,7 @@ func handleConn(conn net.Conn) {
 			if con.RemoteAddr().String() == conn.RemoteAddr().String() {
 				continue
 			}
-			con.Write(data[:total])
+			con.Write(data[:n])
 		}
 	}
 }

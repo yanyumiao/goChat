@@ -3,6 +3,7 @@ package main
 import "fmt"
 import "net"
 import "os"
+import "bufio"
 
 var ch chan int = make(chan int)
 var nickname string
@@ -18,6 +19,7 @@ func read(conn net.Conn) {
 		fmt.Printf("%s\n", buff[0:n])
 	}
 }
+
 func main() {
 	conn, err := net.Dial("tcp", "localhost:9999")
 	if err != nil {
@@ -29,10 +31,14 @@ func main() {
 	fmt.Println("Input nickname:")
 	fmt.Scanln(&nickname)
 	fmt.Println("Your nickname:", nickname)
-	var msg string
+	var msg []byte
 	for {
-		fmt.Scan(&msg)
-		conn.Write([]byte("[" + nickname + "]" + ":" + msg))
+		//fmt.Scan(&msg) //
+		//fmt.Println(msg)
+		reader := bufio.NewReader(os.Stdin)
+		msg, _, _ = reader.ReadLine()
+		msg := "[" + nickname + "]:" + string(msg)
+		conn.Write([]byte(msg))
 		select {
 		case <-ch:
 			fmt.Println("Server error")
