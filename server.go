@@ -5,28 +5,17 @@ import "net"
 
 var ConnMap map[string]net.Conn
 
-func checkErr(err error) int {
-	if err != nil {
-		return 1
-	}
-	return 0
-}
-
 func handleConn(conn net.Conn) {
 	defer conn.Close()
 	for {
 		data := make([]byte, 256)
 		n, err := conn.Read(data)
 		if err != nil {
-			fmt.Println(string(data[:n]), err)
-		} else {
-			fmt.Println(string(data[:n]))
-		}
-		// check
-		flag := checkErr(err)
-		if flag != 0 {
+			//fmt.Println(err.Error())
 			delete(ConnMap, conn.RemoteAddr().String())
 			break
+		} else {
+			fmt.Println(string(data[:n]))
 		}
 		// broadcast
 		for _, con := range ConnMap {

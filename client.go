@@ -33,8 +33,6 @@ func main() {
 	fmt.Println("Your nickname:", nickname)
 	var msg []byte
 	for {
-		//fmt.Scan(&msg) //
-		//fmt.Println(msg)
 		reader := bufio.NewReader(os.Stdin)
 		msg, _, _ = reader.ReadLine()
 		msg := "[" + nickname + "]:" + string(msg)
