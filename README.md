@@ -1,11 +1,11 @@
 # go-chat
 
-##### Version
+##### Version:
 [v0](https://github.com/yanyumiao/gochat/tree/master/v0)  
 [v1](https://github.com/yanyumiao/gochat/tree/master/v1)    
 
 
-##### Demo v0
+##### Demo:
 $ go run server.go  
 New client: 127.0.0.1:56621  
 New client: 127.0.0.1:56627  
