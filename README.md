@@ -1,13 +1,9 @@
 # go-chat
 
 ##### Version
-v0:  
-server.go  
-client.go  
+[v0](https://github.com/yanyumiao/gochat/tree/master/v0)  
+[v1](https://github.com/yanyumiao/gochat/tree/master/v1)    
 
-v1:
-server1.go  
-client1.go  
 
 ##### Demo v0
 $ go run server.go  
