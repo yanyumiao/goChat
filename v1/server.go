@@ -4,7 +4,13 @@ import "fmt"
 import "net"
 
 var ConnMap map[string]net.Conn
-var messages = make(chan string)
+
+type message struct {
+	content string
+	from    string
+}
+
+var messages = make(chan message)
 
 func handleConn(conn net.Conn) {
 	defer conn.Close()
@@ -16,7 +22,10 @@ func handleConn(conn net.Conn) {
 			delete(ConnMap, conn.RemoteAddr().String())
 			break
 		} else {
-			messages <- string(data[:n])
+			var msg message
+			msg.content = string(data[:n])
+			msg.from = conn.RemoteAddr().String()
+			messages <- msg
 		}
 	}
 }
@@ -24,9 +33,12 @@ func handleConn(conn net.Conn) {
 func broadcaster() {
 	for {
 		msg := <-messages
-		fmt.Println(msg)
-		for _, con := range ConnMap {
-			con.Write([]byte(msg))
+		fmt.Println(msg.content)
+		for k, con := range ConnMap {
+			if k == msg.from {
+				continue
+			}
+			con.Write([]byte(msg.content))
 		}
 	}
 }
