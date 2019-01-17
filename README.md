@@ -2,8 +2,7 @@
 
 ##### Version:
 [v0](https://github.com/yanyumiao/gochat/tree/master/v0)  
-[v1](https://github.com/yanyumiao/gochat/tree/master/v1)    
-
+[v1](https://github.com/yanyumiao/gochat/tree/master/v1)  use channel to realize broadcast, better than v0    
 
 ##### Demo:
 $ go run server.go  
