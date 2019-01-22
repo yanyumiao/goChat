@@ -1,8 +1,11 @@
 # go-chat
 
 ##### Version:
-[v0](https://github.com/yanyumiao/gochat/tree/master/v0)  
-[v1](https://github.com/yanyumiao/gochat/tree/master/v1)  use channel to realize broadcast, better than v0    
+##### v0
+client.go server.go  
+##### v1  
+client.go server_1.go  
+use channel to realize broadcast, better than v0    
 
 ##### Demo:
 $ go run server.go  
