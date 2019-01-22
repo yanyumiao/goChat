@@ -1,10 +1,8 @@
 # go-chat
 
 ##### Version:
-##### v0
-client.go server.go  
-##### v1  
-client.go server_1.go  
+v0 server.go  
+v1 server_1.go
 use channel to realize broadcast, better than v0    
 
 ##### Demo:
