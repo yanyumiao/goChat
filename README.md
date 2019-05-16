@@ -29,6 +29,3 @@ Your nickname: B
 [A]:Hello  
 [A]:Good morning  
 Good morning nice to see you  
-
-
-# goim
